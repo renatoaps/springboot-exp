@@ -11,11 +11,13 @@ Como se fosse um template
 mvnrepository.com 
 
 3- maven - starter parent SPRINGBOOT
+```
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>2.2.4.RELEASE</version>
     </parent>
+```
 
 4- maven - como configurar
 
@@ -32,8 +34,10 @@ os starters possuem uma sintaxe padrão, é necessario invocar o mesmo groupId +
 
 ex: 
 
+```
 <groupId>org.springframework.boot</groupId>
 <artifactId>spring-boot-starter-****</artifactId>
+```
 
 ***: web, data, etc
 
