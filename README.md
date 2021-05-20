@@ -1,17 +1,22 @@
 
 # CONCEITOS SPRINGBOOT #
 
-## Primeiras dependencias, Config Inicial do projeto ##
+## _Primeiras dependencias e Config Inicial do projeto_ ##
 
-1- maven - parent
-É uma biblioteca que vai configurar automaticamente toda a biblioteca.
-Como se fosse um template
+> Utilizando projeto com Maven
 
-2- maven - dependencias
+--
+*** <parent> ***
+
+Configura automaticamente toda biblioteca, funciona como um template.
+
+--
+*** dependencias ***
 
 [Maven Repository](https://mvnrepository.com) 
 
-3- maven - starter parent SPRINGBOOT
+--
+*** starter parent Springboot ***
 ```
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -20,18 +25,22 @@ Como se fosse um template
     </parent>
 ```
 
-4- maven - como configurar
+--
+*** como configurar ***
 
 após adicionar um parent para gerenciar as libs, é necessário incluir tbm as dependencias e plugin dentro do build.
+
 o groupId deve ter relação com o do parent.
 
-5- starters
+--
+*** starters ***
 
 Os starters são dependencias, módulos que englobam classes de configuração.
-Para o springboot funcionar, o minimo a ser adicionado é o parent (com a versao) e o starter,
-a partir dai já é possivel utilizar todo poder do springboot
 
-os starters possuem uma sintaxe padrão, é necessario invocar o mesmo groupId + starter.
+Para o springboot funcionar, o minimo a ser adicionado é o parent (com a versao) e o starter,
+a partir dai já é possivel utilizar todo poder do springboot.
+
+Os starters possuem uma sintaxe padrão, é necessario invocar o mesmo groupId + starter.
 
 ex: 
 
@@ -40,13 +49,17 @@ ex:
 <artifactId>spring-boot-starter-****</artifactId>
 ```
 
-***: web, data, etc
+- web
+- data
+- tests
+- etc...
 
 ## Primeiro hello world ##
 
 @RestController anota sua classe como um controlador
 
 @GetMapping("/hello") habilita o método GET dentro da uri /hello
+
 caminho padrao: localhost:8080/hello
 
 ```
