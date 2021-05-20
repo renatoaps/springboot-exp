@@ -44,7 +44,7 @@ ex:
 @GetMapping("/hello") habilita o método GET dentro da uri /hello
 caminho padrao: localhost:8080/hello
 
-
+```
 @RestController
 public SeuController(){
 
@@ -53,3 +53,4 @@ public SeuController(){
         return "hello world!";
     }
 }
+```
