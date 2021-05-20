@@ -72,3 +72,47 @@ public SeuController(){
     }
 }
 ```
+
+## Configuração e Beans ##
+
+_@Configuration_ anota sua classe como uma classe de config;
+
+deve ser usado somente para configurações!
+
+uma boa prática é definir no nome da classe a finalidade de sua configuração
+
+- EmailConfiguration
+- SecurityConfiguration
+- DatabaseConfiguration
+
+
+```
+@Configuration
+public MyConfiguration(){
+
+    @Bean(name = "minhaConfig")
+     String nomeDoMeuApp(){
+            return "Meu sistema v1";
+        }
+}
+```
+
+As configuracoes podem ser buscadas dentro do contexto do Springboot através de Qualifiers
+
+```
+
+public MeuControlador(){
+
+    @Autowired
+    @Qualifier("minhaConfig")
+    private String minhaConfiguracao;
+
+    @GetMapping("/myConfig")
+    String obterConfiguracaoApp(){
+        return minhaConfiguracao;
+    }
+}
+
+```
+
+onde o _@Qualifier_ vai buscar a informacao injetada pelo springboot.
