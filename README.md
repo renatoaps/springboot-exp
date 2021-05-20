@@ -1,29 +1,60 @@
-# README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+# CONCEITOS SPRINGBOOT #
 
-### What is this repository for? ###
+## Primeiras dependencias, Config Inicial do projeto ##
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+1- maven - parent
+É uma biblioteca que vai configurar automaticamente toda a biblioteca.
+Como se fosse um template
 
-### How do I get set up? ###
+2- maven - dependencias
+mvnrepository.com 
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+3- maven - starter parent SPRINGBOOT
+```
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.4.RELEASE</version>
+    </parent>
+```
 
-### Contribution guidelines ###
+4- maven - como configurar
 
-* Writing tests
-* Code review
-* Other guidelines
+após adicionar um parent para gerenciar as libs, é necessário incluir tbm as dependencias e plugin dentro do build.
+o groupId deve ter relação com o do parent.
 
-### Who do I talk to? ###
+5- starters
 
-* Repo owner or admin
-* Other community or team contact
+Os starters são dependencias, módulos que englobam classes de configuração.
+Para o springboot funcionar, o minimo a ser adicionado é o parent (com a versao) e o starter,
+a partir dai já é possivel utilizar todo poder do springboot
+
+os starters possuem uma sintaxe padrão, é necessario invocar o mesmo groupId + starter.
+
+ex: 
+
+```
+<groupId>org.springframework.boot</groupId>
+<artifactId>spring-boot-starter-****</artifactId>
+```
+
+***: web, data, etc
+
+## Primeiro hello world ##
+
+@RestController anota sua classe como um controlador
+
+@GetMapping("/hello") habilita o método GET dentro da uri /hello
+caminho padrao: localhost:8080/hello
+
+```
+@RestController
+public SeuController(){
+
+    @GetMapping("/hello")
+    String helloWorld(){
+        return "hello world!";
+    }
+}
+```
