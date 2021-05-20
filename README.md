@@ -48,7 +48,7 @@ caminho padrao: localhost:8080/hello
 @RestController
 public SeuController(){
 
-    @GetMapping(/hello)
+    @GetMapping("/hello")
     String helloWorld(){
         return "hello world!";
     }
