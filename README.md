@@ -163,3 +163,11 @@ public MyConfig(){
     ...
 }
 ``` 
+
+### _@Autowired_ ###
+Serve para buscar as instancias das classes injetadas pelo Spring.
+lembrando sempre que as classes anotadas ja possuem instancias lidas,
+sem necessidade de gerar novas instancias.
+
+Em versoes mais novas do Spring, o Autowired nao é mais necessario. O spring ja busca automaticamente
+pelas dependencias, em classes anotadas.
