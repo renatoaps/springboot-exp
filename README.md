@@ -116,3 +116,50 @@ public MeuControlador(){
 ```
 
 onde o _@Qualifier_ vai buscar a informacao injetada pelo springboot.
+
+## Container IOC Spring ##
+
+O _Container IOC_ (inversao de controle) faz as injecoes das dependencias
+de forma automatica.
+
+As classes injetadas funcionam no modo _singleton_, ou seja, a mesma instancia é
+acessada por toda JVM, não importa a quantidade de usuários ou conexoes.
+
+###_@Configuration_ ###
+Serve para classes de configuracao
+
+- _@Bean_: sao atribuicoes genericas para os metodos (nunca para as classes!)
+  para que sejam injetados pelo Spring.
+
+### _@Component_ ###
+Anotacao generica, pode ser utilizado quando a sua classe nao se 
+encaixa nem em _controller, service ou repository_ mas mesmo assim
+tem necessidade de ser injetada pelo Spring.
+
+- _@Controller_: injecao de controlador, referente ao MVC
+
+- _@Service_: injecao de regra de negocios, calculos, transformacoes, etc
+
+- _@Repository_: injecao da camada de acesso de dados, banco de dados,
+requisicoes e afins
+
+> Importante saber:
+> 
+> o _@Configuration_ faz a leitura de todos os pacotes a partir de onde ele foi instanciado,
+> procurando por outras annotations.
+> 
+> ex: pacote .org.renatosantana contem a classe _AppConfiguration_ entao todos as
+> classes com annotations a partir de .org.renatosantana serao injetadas automaticamente.
+> 
+> para injetar classes fora deste escopo, como por exemplo, coml lib de terceiros, é necessario
+> adicionar uma annotation _@ComponentScan_ e referenciar os pacotes para serem lidos
+
+```
+@ComponentScan(
+basePackages = [
+"com.mylib1",
+"com.myexternallib2"])
+public MyConfig(){
+    ...
+}
+``` 
