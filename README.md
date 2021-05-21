@@ -171,3 +171,10 @@ sem necessidade de gerar novas instancias.
 
 Em versoes mais novas do Spring, o Autowired nao é mais necessario. O spring ja busca automaticamente
 pelas dependencias, em classes anotadas.
+
+> Ainda utilizado para field injection;
+> 
+> Pode ser necessario dependendo do cenário;
+> 
+> A melhor prática é utilizar um construtor para passar as dependencias, porque nao tem como checar
+> o status do objeto usando Autowired.
