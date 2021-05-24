@@ -186,3 +186,14 @@ Tambem pode ser o _application.yml_.
 Suporta centenas de configs.
 
 As configs mais comuns foram adicionadas ao arquivo na pasta _resources_.
+
+### _@Profile_ ###
+Serve para definir qual o perfil ativo por config
+
+```
+@Configuration
+@Profile("nome_do_perfil")
+public MinhaConfiguration(){
+  //esta configuracao so vai rodar no perfil determinado
+}
+```
