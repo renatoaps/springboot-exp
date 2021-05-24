@@ -197,3 +197,52 @@ public MinhaConfiguration(){
   //esta configuracao so vai rodar no perfil determinado
 }
 ```
+
+### _@Development_ ###
+
+Annotation customizada para carregar valores de configuracao. 
+Segue exemplo abaixo:
+
+```
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Configuration
+@Profile("development")
+public @interface Development {
+}
+```
+
+> _@Target_: Alvo da injecao de dependencias, no caso de classes de config, tem que ser sempre como TYPE
+> 
+> _@Retention_: Até quando a classe vai ficar retida, neste caso é somente até o Runtime
+> 
+> _@Profile_: self explanable
+
+
+### _@Cachorro_ e _@Gato_ ###
+Annotations customizadas que carregam as dependencias e policies referentes ao Bean previamente definido
+
+```
+    @Bean(name = "cachorro")
+    public Animal cachorro(){
+        return new Animal() {
+            @Override
+            public void fazerBarulho() {
+                System.out.println("BAW WAW BAW");
+            }
+        };
+    }
+```
+
+pode ser refeito com lambda, ficando simplesmente:
+
+```
+    @Bean(name = "cachorro")
+    public Animal cachorro(){
+        return () -> System.out.println("BAW WAW BAW");
+    }
+```
+
+> A interface _Animal_ apenas define o metodo que todo animal deve implementar.
+> 
+> _AnimalConfiguration_ carrega os beans que são injetados
