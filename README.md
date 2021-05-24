@@ -184,3 +184,5 @@ pelas dependencias, em classes anotadas.
 Arquivo default para propriedades da aplicacao. 
 Tambem pode ser o _application.yml_.
 Suporta centenas de configs.
+
+As configs mais comuns foram adicionadas ao arquivo na pasta _resources_.
