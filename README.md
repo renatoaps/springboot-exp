@@ -178,3 +178,9 @@ pelas dependencias, em classes anotadas.
 > 
 > A melhor prática é utilizar um construtor para passar as dependencias, porque nao tem como checar
 > o status do objeto usando Autowired.
+
+
+### _application.properties_ ###
+Arquivo default para propriedades da aplicacao. 
+Tambem pode ser o _application.yml_.
+Suporta centenas de configs.
