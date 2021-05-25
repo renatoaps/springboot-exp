@@ -246,3 +246,20 @@ pode ser refeito com lambda, ficando simplesmente:
 > A interface _Animal_ apenas define o metodo que todo animal deve implementar.
 > 
 > _AnimalConfiguration_ carrega os beans que são injetados
+
+
+### Dependencias de Conexao com Banco de Dados ###
+
+As dependencias e propriedades sao auto explicativas
+
+```
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+```
