@@ -263,3 +263,8 @@ As dependencias e propriedades sao auto explicativas
             <artifactId>h2</artifactId>
         </dependency>
 ```
+
+### data.sql ###
+Nomenclatura padrao para o script, o script sera executado todas as vezes que a aplicacao subir.
+
+Como o H2 foi configurado pra rodar em memoria, os dados sao perdidos sempre que a aplicacao parar.
