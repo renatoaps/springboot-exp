@@ -268,3 +268,29 @@ As dependencias e propriedades sao auto explicativas
 Nomenclatura padrao para o script, o script sera executado todas as vezes que a aplicacao subir.
 
 Como o H2 foi configurado pra rodar em memoria, os dados sao perdidos sempre que a aplicacao parar.
+
+### Anotacoes referentes ao JPA ###
+Alguns exemplos de anotacoes utilizadas com JPA
+```
+@Entity
+@Table(name = "cliente")
+public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "nome", length = 100)
+    private String nome;
+  }
+```
+>_@Entity_: anota como entidade para ser injetada pelo Spring, usando o JPA
+> 
+> _@Table_: indica a tabela a qual a classe se referencia
+> 
+> _@Id_: indica que é a chave primaria
+> 
+> _@GeneratedValue_: modo de gerar os campos, no caso de AUTO sera incrementado automaticamente
+> 
+> _@Column_: auto explicativo
