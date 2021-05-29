@@ -28,23 +28,23 @@ public class VendasApplication {
           List<Cliente> obterTodos = clientes.obterTodos();
           obterTodos.forEach(System.out::println);
 
-          obterTodos.forEach(c -> {
-            c.setNome(c.getNome() + " atualizado");
-            clientes.atualizarCliente(c);
-          });
-
-          System.out.println(":: Atualizando Clientes ::");
-          obterTodos.forEach(System.out::println);
-
-          System.out.println(":: Buscando Cliente::");
-          List<Cliente> busca = clientes.obterPorNome("Jess");
-          busca.forEach(System.out::println);
-
-          System.out.println(":: Cliente Deletado ::");
-          clientes.deletarCliente(3);
-
-          System.out.println(":: Limpando tabela um por um, porque sim::");
-          obterTodos.forEach(c -> clientes.deletarCliente(c.getId()));
+//          obterTodos.forEach(c -> {
+//            c.setNome(c.getNome() + " atualizado");
+//            clientes.atualizarCliente(c);
+//          });
+//
+//          System.out.println(":: Atualizando Clientes ::");
+//          obterTodos.forEach(System.out::println);
+//
+//          System.out.println(":: Buscando Cliente::");
+//          List<Cliente> busca = clientes.obterPorNome("Jess");
+//          busca.forEach(System.out::println);
+//
+//          System.out.println(":: Cliente Deletado ::");
+//          clientes.deletarCliente(3);
+//
+//          System.out.println(":: Limpando tabela um por um, porque sim::");
+//          obterTodos.forEach(c -> clientes.deletarCliente(c.getId()));
 
         };
     }

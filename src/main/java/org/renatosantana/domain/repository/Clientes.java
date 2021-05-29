@@ -5,7 +5,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.EntityManager;
 import java.util.List;
 
 @Repository
@@ -14,14 +16,16 @@ public class Clientes {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static String INSERT = "INSERT INTO cliente (nome) VALUES ?";
+    @Autowired
+    private EntityManager entityManager;
+
     private static String SELECT_ALL = "SELECT * FROM cliente";
     private static String UPDATE = "UPDATE cliente SET NOME = ? WHERE ID = ?";
     private static String DELETE = "DELETE FROM cliente WHERE ID = ?";
 
+    @Transactional
     public Cliente salvarCliente(Cliente cliente){
-        this.jdbcTemplate.update(INSERT, cliente.getNome());
-
+        entityManager.persist(cliente);
         return cliente;
     }
 

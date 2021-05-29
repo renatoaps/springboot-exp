@@ -285,12 +285,25 @@ public class Cliente {
     private String nome;
   }
 ```
->_@Entity_: anota como entidade para ser injetada pelo Spring, usando o JPA
+>_@Entity_: anota como entidade para ser injetada pelo Spring, usando o JPA.
+> Será registrada como uma tabela no banco de dados
 > 
-> _@Table_: indica a tabela a qual a classe se referencia
+> _@Table_: indica a tabela a qual a classe se referencia.
+> É desnecessaria se a classe campo tiver o mesmo nome que a tabela
+> Pois sera mapeado automaticamente
 > 
 > _@Id_: indica que é a chave primaria
 > 
 > _@GeneratedValue_: modo de gerar os campos, no caso de AUTO sera incrementado automaticamente
 > 
-> _@Column_: auto explicativo
+> _@Column_: auto explicativo.
+> É desnecessaria se o campo tiver o mesmo nome que a coluna,
+> Sendo mapeada automaticamente no mesmo caso da _@Table_
+>
+> _@EntityManager_: interface usada pelo JPA para realizar as operaçoes
+> 
+> _@Transactional_: necessario para o Spring saber que realizar transacao em banco de dados
+> 
+> o arquivo data.sql foi renomeado porque se tornou desnecessario.
+> o proprio Spring vai iniciar as tabelas, entidades e tudo mais, atraves
+> das anotacoes.

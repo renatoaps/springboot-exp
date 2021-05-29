@@ -3,7 +3,7 @@ package org.renatosantana.domain.entity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "tb_cliente")
+@Table(name = "cliente")
 public class Cliente {
 
     @Id
