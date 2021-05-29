@@ -14,16 +14,15 @@ public class Cliente {
     @Column(name = "nome", length = 100)
     private String nome;
 
-    public Cliente(String nome) {
-        this.nome = nome;
-    }
-
-    public Cliente(Integer id) {
-        this.id = id;
+    public Cliente() {
     }
 
     public Cliente(Integer id, String nome) {
         this.id = id;
+        this.nome = nome;
+    }
+
+    public Cliente(String nome) {
         this.nome = nome;
     }
 

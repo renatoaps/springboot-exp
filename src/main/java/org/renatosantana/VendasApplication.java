@@ -20,31 +20,35 @@ public class VendasApplication {
 
         return args -> {
           System.out.println(":: Salvando Clientes");
-          clientes.salvarCliente(new Cliente("Renato"));
-          clientes.salvarCliente(new Cliente("Jessica"));
-          clientes.salvarCliente(new Cliente("Cartório Safado"));
+          clientes.salvar(new Cliente("Renato"));
+          clientes.salvar(new Cliente("Jessica"));
+          clientes.salvar(new Cliente("Cartório Safado"));
 
           System.out.println(":: Listando Clientes");
-          List<Cliente> obterTodos = clientes.obterTodos();
-          obterTodos.forEach(System.out::println);
+          List<Cliente> todosClientes = clientes.obterTodos();
+            todosClientes.forEach(System.out::println);
 
-//          obterTodos.forEach(c -> {
-//            c.setNome(c.getNome() + " atualizado");
-//            clientes.atualizarCliente(c);
-//          });
-//
-//          System.out.println(":: Atualizando Clientes ::");
-//          obterTodos.forEach(System.out::println);
-//
-//          System.out.println(":: Buscando Cliente::");
-//          List<Cliente> busca = clientes.obterPorNome("Jess");
-//          busca.forEach(System.out::println);
-//
-//          System.out.println(":: Cliente Deletado ::");
-//          clientes.deletarCliente(3);
-//
-//          System.out.println(":: Limpando tabela um por um, porque sim::");
-//          obterTodos.forEach(c -> clientes.deletarCliente(c.getId()));
+            todosClientes.forEach(c -> {
+            c.setNome(c.getNome() + " atualizado");
+            clientes.atualizar(c);
+          });
+
+          System.out.println(":: Atualizando Clientes ::");
+            todosClientes.forEach(System.out::println);
+
+          System.out.println(":: Buscando Cliente::");
+          List<Cliente> busca = clientes.buscarPorNome("Jess");
+          busca.forEach(System.out::println);
+
+          System.out.println(":: Deletando Clientes::");
+          clientes.obterTodos().forEach(clientes::deletar);
+
+            todosClientes = clientes.obterTodos();
+            if(todosClientes.isEmpty()){
+                System.out.println("Nenhum cliente encontrado.");
+            }else{
+                todosClientes.forEach(System.out::println);
+            }
 
         };
     }
