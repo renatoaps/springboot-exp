@@ -52,7 +52,7 @@ public class Clientes {
     @Transactional(readOnly = true)
     public List<Cliente> obterTodos(){
         return entityManager
-                .createQuery("SELECT c FROM Cliente c", Cliente.class)
+                .createQuery("FROM Cliente", Cliente.class)
                 .getResultList();
     }
 

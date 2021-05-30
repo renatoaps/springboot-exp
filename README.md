@@ -302,8 +302,30 @@ public class Cliente {
 >
 > _@EntityManager_: interface usada pelo JPA para realizar as operaçoes
 > 
-> _@Transactional_: necessario para o Spring saber que realizar transacao em banco de dados
+> _@Transactional_: necessario para o Spring saber que realizar transacao em banco de dados.
+> pode (e deve) ser utilizado em conjunto com readonly = true, para otimizar as buscas
 > 
 > o arquivo data.sql foi renomeado porque se tornou desnecessario.
 > o proprio Spring vai iniciar as tabelas, entidades e tudo mais, atraves
 > das anotacoes.
+
+### Operações comuns com o _EntityManager_ ###
+
+>
+>.persist()
+: funciona como o Insert do SQL
+
+>.merge()
+: sincroniza os dados. Ao utilizar JPA, os dados passam a ser como _entidades_
+e nao objetos em si
+
+>.createQuery()
+: pode ser escrita uma query em formato JPQL, uma mistura de JPA
+com SQL
+
+>.find()
+: procura um determinado registro
+
+>.setParameter()
+: customiza ainda mais a sua query, adicionando parametros em uma
+query já pronta
