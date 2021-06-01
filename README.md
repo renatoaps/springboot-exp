@@ -329,3 +329,35 @@ com SQL
 >.setParameter()
 : customiza ainda mais a sua query, adicionando parametros em uma
 query já pronta
+
+
+### JPARepository ###
+
+Interface que ja contem metodos mais utilizados no JPA,
+com boas praticas e performance excelente.
+
+> _save_: faz o insert ou update de uma entidade na tabela
+> 
+> _findAll_: trás todos os resultados referentes á entidade buscada
+> 
+> _findById_: busca apenas por id
+> 
+> _findByNomeLike_: busca por nome que contem uma string, é método customizado
+> 
+> _delete_: deleta a entidade enviada
+> 
+
+Um exemplo da utilizacao, explicando as anotacoes:
+
+```
+public interface Clientes extends JpaRepository<Cliente, Integer> {
+
+    List<Cliente> findByNomeLike(String nome);
+}
+```
+
+> <Cliente, Integer>
+> 
+> Cliente é o objeto de resultado da query
+> 
+> Integer é o tipo do campo anotado com o _@Id_
