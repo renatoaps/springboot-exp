@@ -361,3 +361,32 @@ public interface Clientes extends JpaRepository<Cliente, Integer> {
 > Cliente é o objeto de resultado da query
 > 
 > Integer é o tipo do campo anotado com o _@Id_
+
+
+### _@QueryMethods_ ###
+
+O JPA Tambem permite que querys customizadas sejam adicionadas.
+Os exemplos abaixo, sao para querys mais simples, porem tambem é
+possivel adicionar outras mais complexas
+
+```
+    List<Cliente> findByNomeLike(String nome);
+    List<Cliente> findByNomeOrId(String nome, Integer id);
+    Cliente findOneByNome(String nome);
+    boolean existsByNome(String nome);
+```
+
+> _findByNomeLike_
+> 
+> busca por uma string que se pareça com a entrada fornecida, a sintaxe do comando funciona da seguinte forma:
+> 
+> - find
+> - - by
+> - - - nome
+> - - - - like
+> 
+> a query é construida nesta ordem, utilizando as palavras-chave informadas.
+> 
+> mesma coisa para _findNomeOrid_ onde como o proprio metodo diz, a busca sera realizada pelo nome
+> ou id.
+> 

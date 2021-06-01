@@ -9,8 +9,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
-
 @RestController
 @SpringBootApplication
 public class VendasApplication {
@@ -24,31 +22,10 @@ public class VendasApplication {
           clientes.save(new Cliente("Jessica"));
           clientes.save(new Cliente("Cartório Safado"));
 
-          System.out.println(":: Listando Clientes");
-          List<Cliente> todosClientes = clientes.findAll();
-            todosClientes.forEach(System.out::println);
-
-            todosClientes.forEach(c -> {
-            c.setNome(c.getNome() + " atualizado");
-            clientes.save(c);
-          });
-
-          System.out.println(":: Atualizando Clientes ::");
-            todosClientes.forEach(System.out::println);
-
-          System.out.println(":: Buscando Cliente::");
-          List<Cliente> busca = clientes.findByNomeLike("Jess");
-          busca.forEach(System.out::println);
-
-          System.out.println(":: Deletando Clientes::");
-          clientes.findAll().forEach(clientes::delete);
-
-            todosClientes = clientes.findAll();
-            if(todosClientes.isEmpty()){
-                System.out.println("Nenhum cliente encontrado.");
-            }else{
-                todosClientes.forEach(System.out::println);
-            }
+          System.out.println("Existe o cliente buscado?" + clientes.existsByNome("Jessica"));
+          System.out.println(clientes.findByNomeOrId("Renato", 3));
+          System.out.println(clientes.findByNomeLike("Jess"));
+          System.out.println(clientes.findOneByNome("Renato"));
         };
     }
 
