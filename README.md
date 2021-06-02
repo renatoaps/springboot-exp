@@ -186,6 +186,8 @@ Tambem pode ser o _application.yml_.
 Suporta centenas de configs.
 
 As configs mais comuns foram adicionadas ao arquivo na pasta _resources_.
+Tambem podem ser encontradas em
+https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties.core
 
 ### _@Profile_ ###
 Serve para definir qual o perfil ativo por config
