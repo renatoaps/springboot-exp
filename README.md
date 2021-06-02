@@ -125,7 +125,7 @@ de forma automatica.
 As classes injetadas funcionam no modo _singleton_, ou seja, a mesma instancia é
 acessada por toda JVM, não importa a quantidade de usuários ou conexoes.
 
-###_@Configuration_ ###
+### _@Configuration_ ###
 Serve para classes de configuracao
 
 - _@Bean_: sao atribuicoes genericas para os metodos (nunca para as classes!)
