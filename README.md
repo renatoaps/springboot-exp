@@ -391,4 +391,17 @@ possivel adicionar outras mais complexas
 > 
 > mesma coisa para _findNomeOrid_ onde como o proprio metodo diz, a busca sera realizada pelo nome
 > ou id.
+
+### _@Query_ customizada ###
+
+```
+    @Query("SELECT c FROM Cliente WHERE c.nome LIKE  :nome")
+    List<Cliente> buscarPorNomeHQL(@Param("nome")String nome);
+```
+
+> _@Query_ passa a query a ser executada
+> 
+> _:nome_ é o parametro a ser buscado
+> 
+> _@Param_ indica o parametro que esta anotado, para a busca
 > 

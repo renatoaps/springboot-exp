@@ -17,15 +17,15 @@ public class VendasApplication {
     public CommandLineRunner init(@Autowired Clientes clientes){
 
         return args -> {
-          System.out.println(":: Salvando Clientes");
+          System.out.println(":: Salvando Clientes ::");
           clientes.save(new Cliente("Renato"));
           clientes.save(new Cliente("Jessica"));
           clientes.save(new Cliente("Cartório Safado"));
 
           System.out.println("Existe o cliente buscado?" + clientes.existsByNome("Jessica"));
           System.out.println(clientes.findByNomeOrId("Renato", 3));
-          System.out.println(clientes.findByNomeLike("Jess"));
-          System.out.println(clientes.findOneByNome("Renato"));
+          System.out.println(clientes.buscarPorNomeHQL("Jessica"));
+          System.out.println(clientes.buscarPorNomeSQL("Renato"));
         };
     }
 
