@@ -186,6 +186,8 @@ Tambem pode ser o _application.yml_.
 Suporta centenas de configs.
 
 As configs mais comuns foram adicionadas ao arquivo na pasta _resources_.
+Tambem podem ser encontradas em
+https://docs.spring.io/spring-boot/docs/current/reference/html/application-properties.html#application-properties.core
 
 ### _@Profile_ ###
 Serve para definir qual o perfil ativo por config
@@ -246,3 +248,160 @@ pode ser refeito com lambda, ficando simplesmente:
 > A interface _Animal_ apenas define o metodo que todo animal deve implementar.
 > 
 > _AnimalConfiguration_ carrega os beans que são injetados
+
+
+### Dependencias de Conexao com Banco de Dados ###
+
+As dependencias e propriedades sao auto explicativas
+
+```
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+        </dependency>
+```
+
+### data.sql ###
+Nomenclatura padrao para o script, o script sera executado todas as vezes que a aplicacao subir.
+
+Como o H2 foi configurado pra rodar em memoria, os dados sao perdidos sempre que a aplicacao parar.
+
+### Anotacoes referentes ao JPA ###
+Alguns exemplos de anotacoes utilizadas com JPA
+```
+@Entity
+@Table(name = "cliente")
+public class Cliente {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
+    private Integer id;
+
+    @Column(name = "nome", length = 100)
+    private String nome;
+  }
+```
+>_@Entity_: anota como entidade para ser injetada pelo Spring, usando o JPA.
+> Será registrada como uma tabela no banco de dados
+> 
+> _@Table_: indica a tabela a qual a classe se referencia.
+> É desnecessaria se a classe campo tiver o mesmo nome que a tabela
+> Pois sera mapeado automaticamente
+> 
+> _@Id_: indica que é a chave primaria
+> 
+> _@GeneratedValue_: modo de gerar os campos, no caso de AUTO sera incrementado automaticamente
+> 
+> _@Column_: auto explicativo.
+> É desnecessaria se o campo tiver o mesmo nome que a coluna,
+> Sendo mapeada automaticamente no mesmo caso da _@Table_
+>
+> _@EntityManager_: interface usada pelo JPA para realizar as operaçoes
+> 
+> _@Transactional_: necessario para o Spring saber que realizar transacao em banco de dados.
+> pode (e deve) ser utilizado em conjunto com readonly = true, para otimizar as buscas
+> 
+> o arquivo data.sql foi renomeado porque se tornou desnecessario.
+> o proprio Spring vai iniciar as tabelas, entidades e tudo mais, atraves
+> das anotacoes.
+
+### Operações comuns com o _EntityManager_ ###
+
+>
+>.persist()
+: funciona como o Insert do SQL
+
+>.merge()
+: sincroniza os dados. Ao utilizar JPA, os dados passam a ser como _entidades_
+e nao objetos em si
+
+>.createQuery()
+: pode ser escrita uma query em formato JPQL, uma mistura de JPA
+com SQL
+
+>.find()
+: procura um determinado registro
+
+>.setParameter()
+: customiza ainda mais a sua query, adicionando parametros em uma
+query já pronta
+
+
+### JPARepository ###
+
+Interface que ja contem metodos mais utilizados no JPA,
+com boas praticas e performance excelente.
+
+> _save_: faz o insert ou update de uma entidade na tabela
+> 
+> _findAll_: trás todos os resultados referentes á entidade buscada
+> 
+> _findById_: busca apenas por id
+> 
+> _findByNomeLike_: busca por nome que contem uma string, é método customizado
+> 
+> _delete_: deleta a entidade enviada
+> 
+
+Um exemplo da utilizacao, explicando as anotacoes:
+
+```
+public interface Clientes extends JpaRepository<Cliente, Integer> {
+
+    List<Cliente> findByNomeLike(String nome);
+}
+```
+
+> <Cliente, Integer>
+> 
+> Cliente é o objeto de resultado da query
+> 
+> Integer é o tipo do campo anotado com o _@Id_
+
+
+### _@QueryMethods_ ###
+
+O JPA Tambem permite que querys customizadas sejam adicionadas.
+Os exemplos abaixo, sao para querys mais simples, porem tambem é
+possivel adicionar outras mais complexas
+
+```
+    List<Cliente> findByNomeLike(String nome);
+    List<Cliente> findByNomeOrId(String nome, Integer id);
+    Cliente findOneByNome(String nome);
+    boolean existsByNome(String nome);
+```
+
+> _findByNomeLike_
+> 
+> busca por uma string que se pareça com a entrada fornecida, a sintaxe do comando funciona da seguinte forma:
+> 
+> - find
+> - - by
+> - - - nome
+> - - - - like
+> 
+> a query é construida nesta ordem, utilizando as palavras-chave informadas.
+> 
+> mesma coisa para _findNomeOrid_ onde como o proprio metodo diz, a busca sera realizada pelo nome
+> ou id.
+
+### _@Query_ customizada ###
+
+```
+    @Query("SELECT c FROM Cliente WHERE c.nome LIKE  :nome")
+    List<Cliente> buscarPorNomeHQL(@Param("nome")String nome);
+```
+
+> _@Query_ passa a query a ser executada
+> 
+> _:nome_ é o parametro a ser buscado
+> 
+> _@Param_ indica o parametro que esta anotado, para a busca
+> 

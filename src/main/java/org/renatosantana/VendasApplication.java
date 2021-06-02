@@ -1,31 +1,32 @@
 package org.renatosantana;
 
-import org.springframework.beans.factory.annotation.Value;
+import org.renatosantana.domain.entity.Cliente;
+import org.renatosantana.domain.repository.Clientes;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @SpringBootApplication
 public class VendasApplication {
 
-    @Value("${application.name}")
-    private String applicationName;
-
-    @Cachorro
-    private Animal animal;
-
     @Bean
-    public CommandLineRunner fazerBarulho(){
-      return args -> this.animal.fazerBarulho();
-    }
+    public CommandLineRunner init(@Autowired Clientes clientes){
 
-    @GetMapping("/hello")
-    String helloWorld(){
-        return applicationName;
+        return args -> {
+          System.out.println(":: Salvando Clientes ::");
+          clientes.save(new Cliente("Renato"));
+          clientes.save(new Cliente("Jessica"));
+          clientes.save(new Cliente("Cartório Safado"));
+
+          System.out.println("Existe o cliente buscado?" + clientes.existsByNome("Jessica"));
+          System.out.println(clientes.findByNomeOrId("Renato", 3));
+          System.out.println(clientes.buscarPorNomeHQL("Jessica"));
+          System.out.println(clientes.buscarPorNomeSQL("Renato"));
+        };
     }
 
     public static void main(String[] args) {
