@@ -417,6 +417,11 @@ possivel adicionar outras mais complexas
   }
 ```
 
-> _OneToMany_ relacao contraria do manyToOne. Apenas um para muitos
+> _OneToMany_ relacao contraria do manyToOne. Apenas um para muitos.
+> O _mappedBy_ indica por quem está sendo feito este mapeamento
 > 
 > _@JoinColumn_ informa a coluna que deseja ter relacao com a entidade
+> 
+> _Set_ é como uma lista, com o diferencial de que NAO ACEITA ITENS REPETIDOS!
+> 
+> 
