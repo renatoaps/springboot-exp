@@ -405,3 +405,18 @@ possivel adicionar outras mais complexas
 > 
 > _@Param_ indica o parametro que esta anotado, para a busca
 > 
+>  _@ManyToOne_ muitos para um, se refere ao relacionamento da classe atual
+> com o item referenciado. exemplo:
+
+```
+  public class Pedido{
+    
+    @ManyToOne
+    private Cliente cliente;
+    //muitos pedidos para um cliente
+  }
+```
+
+> _OneToMany_ relacao contraria do manyToOne. Apenas um para muitos
+> 
+> _@JoinColumn_ informa a coluna que deseja ter relacao com a entidade
