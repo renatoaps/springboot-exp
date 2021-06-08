@@ -19,4 +19,7 @@ public interface Clientes extends JpaRepository<Cliente, Integer> {
 
     @Query(value = "SELECT * FROM Cliente c WHERE c.nome LIKE '%:nome%'", nativeQuery = true)
     List<Cliente>buscarPorNomeSQL(@Param("nome")String nome);
+
+    @Query("SELECT c FROM Cliente c LEFT JOIN FETCH c.pedidos p where c.id = :id")
+    Cliente findClienteFetch(@Param("id") Integer id);
 }

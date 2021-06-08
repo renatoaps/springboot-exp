@@ -2,7 +2,7 @@ package org.renatosantana.domain.entity;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -18,9 +18,9 @@ public class Pedido {
     private Cliente cliente;
 
     @Column(name = "data_pedido")
-    private LocalDateTime dataPedido;
+    private LocalDate dataPedido;
 
-    @Column(name = "total", length = 20, precision = 2)
+    @Column(name = "total", scale = 2, precision = 20)
     private BigDecimal total;
 
     @OneToMany(mappedBy = "pedido")
@@ -50,11 +50,11 @@ public class Pedido {
         this.cliente = cliente;
     }
 
-    public LocalDateTime getDataPedido() {
+    public LocalDate getDataPedido() {
         return dataPedido;
     }
 
-    public void setDataPedido(LocalDateTime dataPedido) {
+    public void setDataPedido(LocalDate dataPedido) {
         this.dataPedido = dataPedido;
     }
 
@@ -64,5 +64,14 @@ public class Pedido {
 
     public void setTotal(BigDecimal total) {
         this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido{" +
+                "id=" + id +
+                ", dataPedido=" + dataPedido +
+                ", total=" + total +
+                '}';
     }
 }

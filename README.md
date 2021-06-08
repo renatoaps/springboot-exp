@@ -424,4 +424,8 @@ possivel adicionar outras mais complexas
 > 
 > _Set_ é como uma lista, com o diferencial de que NAO ACEITA ITENS REPETIDOS!
 > 
+> _FetchType.LAZY_ é o modo padrao de trazer as informacoes. com Lazy, a consulta é otimizada
+> porem não trás junto os pedidos do cliente ou informacao correlata.
 > 
+> _FetchType.EAGER_ tras todas as informacoes, porem a consulta é mais pesada.
+> sempre que for buscado um registro, vem junto todas as informacoes relacionadas a ele
