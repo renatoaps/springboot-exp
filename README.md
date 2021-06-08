@@ -125,7 +125,7 @@ de forma automatica.
 As classes injetadas funcionam no modo _singleton_, ou seja, a mesma instancia é
 acessada por toda JVM, não importa a quantidade de usuários ou conexoes.
 
-###_@Configuration_ ###
+### _@Configuration_ ###
 Serve para classes de configuracao
 
 - _@Bean_: sao atribuicoes genericas para os metodos (nunca para as classes!)
@@ -405,3 +405,27 @@ possivel adicionar outras mais complexas
 > 
 > _@Param_ indica o parametro que esta anotado, para a busca
 > 
+>  _@ManyToOne_ muitos para um, se refere ao relacionamento da classe atual
+> com o item referenciado. exemplo:
+
+```
+  public class Pedido{
+    
+    @ManyToOne
+    private Cliente cliente;
+    //muitos pedidos para um cliente
+  }
+```
+
+> _OneToMany_ relacao contraria do manyToOne. Apenas um para muitos.
+> O _mappedBy_ indica por quem está sendo feito este mapeamento
+> 
+> _@JoinColumn_ informa a coluna que deseja ter relacao com a entidade
+> 
+> _Set_ é como uma lista, com o diferencial de que NAO ACEITA ITENS REPETIDOS!
+> 
+> _FetchType.LAZY_ é o modo padrao de trazer as informacoes. com Lazy, a consulta é otimizada
+> porem não trás junto os pedidos do cliente ou informacao correlata.
+> 
+> _FetchType.EAGER_ tras todas as informacoes, porem a consulta é mais pesada.
+> sempre que for buscado um registro, vem junto todas as informacoes relacionadas a ele
