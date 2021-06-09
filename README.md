@@ -429,3 +429,21 @@ possivel adicionar outras mais complexas
 > 
 > _FetchType.EAGER_ tras todas as informacoes, porem a consulta é mais pesada.
 > sempre que for buscado um registro, vem junto todas as informacoes relacionadas a ele
+
+
+### _@Controller_ ###
+
+Responsavel por obter as requisicoes, camada que fica exposta para web, servicos e afins
+
+_@GetMapping_: Equivalente ao _RequestMapping_, voltado para o GET;
+
+_@PostMapping_: Idem _GetMapping_, voltado para POST;
+
+_@RequestBody_: Identifica o objeto que vem no body da requisicao;
+
+_@PathVariable_: Autoexplicativo (variavel que vem no path)
+
+_Optional_: é mandatório fazer essa verificacao ao trabalhar com dados que vem de base.
+Evitando nullpointer.
+
+_@JsonIgnore_: Propriedade será ignorada ao fazer o parse de json para objeto e vice versa
