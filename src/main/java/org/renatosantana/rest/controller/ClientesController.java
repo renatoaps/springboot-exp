@@ -19,7 +19,7 @@ public class ClientesController {
 
     @GetMapping("/api/clientes/{id}")
     @ResponseBody
-    public ResponseEntity getClienteById( @PathVariable Integer id){
+    public ResponseEntity getById( @PathVariable Integer id){
         Optional<Cliente> cliente = clientes.findById(id);
         if (cliente.isPresent()){
             return ResponseEntity.ok(cliente.get());
@@ -30,9 +30,21 @@ public class ClientesController {
 
     @PostMapping("/api/clientes")
     @ResponseBody
-    public ResponseEntity saveCliente(@RequestBody Cliente cliente){
+    public ResponseEntity save(@RequestBody Cliente cliente){
         Cliente clienteSalvo = clientes.save(cliente);
 
         return ResponseEntity.ok(clienteSalvo);
+    }
+
+    @DeleteMapping("/api/clientes/{id}")
+    @ResponseBody
+    public ResponseEntity delete(@PathVariable Integer id){
+        Optional<Cliente> cliente = clientes.findById(id);
+        if (cliente.isPresent()){
+            clientes.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
     }
 }
