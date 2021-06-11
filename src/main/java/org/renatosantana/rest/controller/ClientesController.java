@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -43,6 +44,33 @@ public class ClientesController {
         if (cliente.isPresent()){
             clientes.deleteById(id);
             return ResponseEntity.noContent().build();
+        }
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @PutMapping("/api/clientes/{id}")
+    @ResponseBody
+    public ResponseEntity update(@PathVariable Integer id,
+                                 @RequestBody Cliente cliente){
+
+        return clientes
+                .findById(id)
+                .map(clienteExiste ->{
+                    cliente.setId(clienteExiste.getId());
+                    clientes.save(cliente);
+                    return ResponseEntity.noContent().build();
+
+                }).orElseGet( () -> ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/api/clientes")
+    @ResponseBody
+    ResponseEntity getAll(){
+        List<Cliente> todosClientes = clientes.findAll();
+
+        if (todosClientes.size() > 0){
+            return ResponseEntity.ok(todosClientes);
         }
 
         return ResponseEntity.notFound().build();
