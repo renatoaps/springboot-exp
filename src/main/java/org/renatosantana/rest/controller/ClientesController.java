@@ -2,6 +2,8 @@ package org.renatosantana.rest.controller;
 
 import org.renatosantana.domain.entity.Cliente;
 import org.renatosantana.domain.repository.Clientes;
+import org.springframework.data.domain.Example;
+import org.springframework.data.domain.ExampleMatcher;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -66,13 +68,15 @@ public class ClientesController {
 
     @GetMapping("/api/clientes")
     @ResponseBody
-    ResponseEntity getAll(){
-        List<Cliente> todosClientes = clientes.findAll();
+    ResponseEntity find(Cliente filtro){
+        ExampleMatcher matcher = ExampleMatcher
+                                    .matching()
+                                    .withIgnoreCase()
+                                    .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
 
-        if (todosClientes.size() > 0){
-            return ResponseEntity.ok(todosClientes);
-        }
+        Example example = Example.of(filtro, matcher);
 
-        return ResponseEntity.notFound().build();
+        List<Cliente> dados = clientes.findAll(example);
+        return ResponseEntity.ok(dados);
     }
 }
