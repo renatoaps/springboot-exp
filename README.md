@@ -447,3 +447,29 @@ _Optional_: é mandatório fazer essa verificacao ao trabalhar com dados que vem
 Evitando nullpointer.
 
 _@JsonIgnore_: Propriedade será ignorada ao fazer o parse de json para objeto e vice versa
+
+### _@RestController_ ###
+
+É a melhor aplicação, substituindo o _@Controller_. Já vem com o _@ResponseBody_ embutido, sem necessidade de utilizar
+em cada um dos métodos.
+
+Se aplicado junto com _@RequestMapping_, facilita ainda mais o uso, deixando o código mais limpo.
+
+> _ExampleMatcher_ serve para criar filtros de queries dinâmicas, é utilizado em conjunto com o Matcher.
+> _matching_ é o metodo de comparacao, ou seja, funciona como um like;
+> 
+> _withIgnoreCase_ ignora a capitulacao das palavras, tanto faz se está em caixa alta ou baixa;
+> 
+> _Example_ aplica o filtro criado no _matcher_ junto com o objeto a ser filtrado, a ordem é _objeto_, _filtro(matcher)_
+
+```
+        ExampleMatcher matcher = ExampleMatcher
+                                    .matching()
+                                    .withIgnoreCase()
+                                    .withStringMatcher(ExampleMatcher.StringMatcher.CONTAINING);
+
+        Example example = Example.of(filtro, matcher);
+```
+
+> _@ResponseStatus_ modifica o codigo de status padrao que o método retorna, caso utilize o _@RestController_ o _@ResponseBody_
+> sempre trás o status code 200.
