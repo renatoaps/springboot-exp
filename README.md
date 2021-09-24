@@ -5,18 +5,15 @@
 
 > Utilizando projeto com Maven
 
---
-*** <parent> ***
-
 Configura automaticamente toda biblioteca, funciona como um template.
 
 --
-*** dependencias ***
+***dependencias***
 
 [Maven Repository](https://mvnrepository.com) 
 
 --
-*** starter parent Springboot ***
+***starter parent Springboot***
 ```
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -26,14 +23,14 @@ Configura automaticamente toda biblioteca, funciona como um template.
 ```
 
 --
-*** como configurar ***
+***como configurar?***
 
 após adicionar um parent para gerenciar as libs, é necessário incluir tbm as dependencias e plugin dentro do build.
 
 o groupId deve ter relação com o do parent.
 
 --
-*** starters ***
+***starters***
 
 Os starters são dependencias, módulos que englobam classes de configuração.
 
